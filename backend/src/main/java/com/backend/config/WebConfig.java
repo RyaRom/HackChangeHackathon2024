@@ -24,14 +24,14 @@ public class WebConfig {
 
     private ExchangeFilterFunction logRequest() {
         return ExchangeFilterFunction.ofRequestProcessor(clientRequest -> {
-            log.info("REST CLIENT REQUEST: {}", clientRequest);
+            log.info("REST CLIENT REQUEST: {}", clientRequest.attributes());
             return Mono.just(clientRequest);
         });
     }
 
     private ExchangeFilterFunction logResponse() {
         return ExchangeFilterFunction.ofResponseProcessor(clientResponse -> {
-            log.info("REST CLIENT RESPONSE: {}", clientResponse);
+            log.info("REST CLIENT RESPONSE: {}", clientResponse.statusCode());
             return Mono.just(clientResponse);
         });
     }
