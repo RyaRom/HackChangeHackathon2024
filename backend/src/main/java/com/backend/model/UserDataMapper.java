@@ -102,7 +102,6 @@ public class UserDataMapper {
                 .specialWeb(userDataDTO.getSignatures().getSpecial().getWeb())
                 .segment(userDataDTO.getSegment())
                 .role(userDataDTO.getRole())
-                .target(userDataDTO.getTarget())
                 .claims(userDataDTO.getClaims())
                 .build();
     }

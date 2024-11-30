@@ -32,6 +32,4 @@ public class ModelRequestDTO {
     private List<PaymentMethod> availableMethods;
 
     private Integer claims;
-
-    private PaymentMethod target;
 }

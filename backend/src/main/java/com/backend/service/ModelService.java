@@ -1,9 +1,7 @@
 package com.backend.service;
 
 
-import com.backend.exception.ModelException;
 import com.backend.model.dto.ModelRequestDTO;
-import com.backend.model.dto.ModelResponseDTO;
 import com.backend.model.enums.PaymentMethod;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;

@@ -1,6 +1,5 @@
 package com.backend.model.dto;
 
-
 import lombok.Builder;
 import lombok.Data;
 
