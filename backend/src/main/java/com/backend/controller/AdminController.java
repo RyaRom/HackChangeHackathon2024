@@ -1,17 +1,18 @@
 package com.backend.controller;
 
+import com.backend.model.db.UserData;
 import com.backend.model.dto.UserDataDTO;
+import com.backend.model.dto.WebRequestDTO;
 import com.backend.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/users")
 @RequiredArgsConstructor
+@Tag(name = "Admin", description = "Admin API")
 public class AdminController {
     private final UserService userService;
 
@@ -19,5 +20,10 @@ public class AdminController {
     public ResponseEntity<Void> addUser(@RequestBody UserDataDTO userData) {
         userService.addUser(userData);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/user/")
+    public ResponseEntity<UserData> getUser(@RequestBody WebRequestDTO webRequestDTO) {
+        return ResponseEntity.ok(userService.getUser(webRequestDTO));
     }
 }

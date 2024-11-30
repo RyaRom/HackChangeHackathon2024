@@ -21,12 +21,13 @@ public class UserService {
 
     @Transactional
     public PaymentMethod getPrediction(WebRequestDTO webRequestDTO) {
-        UserData user = getUser(webRequestDTO);
-        if (user.getTarget() != null) {
-            return user.getTarget();
-        } else {
+        UserData user;
+        try {
+            user = getUser(webRequestDTO);
+        } catch (Exception e) {
             return addPrediction(webRequestDTO);
         }
+        return user.getTarget();
     }
 
     @Transactional
@@ -45,7 +46,7 @@ public class UserService {
         userRepo.save(user);
     }
 
-    private UserData getUser(WebRequestDTO webRequestDTO) {
+    public UserData getUser(WebRequestDTO webRequestDTO) {
         return userRepo.findDistinctByClientIdAndOrganizationId(
                         webRequestDTO.getClientId(),
                         webRequestDTO.getOrganizationId())

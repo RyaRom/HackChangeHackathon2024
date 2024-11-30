@@ -11,4 +11,4 @@ spring:
     hibernate:
       ddl-auto: update
 model:
-  url: "http://localhost:8080/model/process-data"
+  url: "http://localhost:8081/model/process-data"
