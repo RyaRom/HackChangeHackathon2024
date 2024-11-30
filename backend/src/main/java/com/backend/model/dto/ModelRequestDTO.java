@@ -10,14 +10,8 @@ import java.util.List;
 
 @Data
 @Builder
-public class UserDataDTO {
-    private String clientId;
-
-    private String organizationId;
-
+public class ModelRequestDTO {
     private SegmentType segment;
-
-    private UserRole role;
 
     private Integer organizations;
 
@@ -25,7 +19,15 @@ public class UserDataDTO {
 
     private Boolean mobileApp;
 
-    private SignaturesDTO signatures;
+    private Integer commonMobile;
+
+    private Integer commonWeb;
+
+    private Integer specialMobile;
+
+    private Integer specialWeb;
+
+    UserRole role;
 
     private List<PaymentMethod> availableMethods;
 

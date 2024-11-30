@@ -3,6 +3,7 @@ package com.backend.model;
 import com.backend.model.db.Signature;
 import com.backend.model.db.Signatures;
 import com.backend.model.db.UserData;
+import com.backend.model.dto.ModelRequestDTO;
 import com.backend.model.dto.SignatureDTO;
 import com.backend.model.dto.SignaturesDTO;
 import com.backend.model.dto.UserDataDTO;
@@ -24,7 +25,8 @@ public class UserDataMapper {
                 .organizations(userData.getOrganizations())
                 .currentMethod(userData.getCurrentMethod())
                 .mobileApp(userData.getMobileApp())
-                .signatures(toDTO(userData.getSignatures()))  // Map signatures
+                .signatures(toDTO(userData.getSignatures()))
+                .role(userData.getRole())
                 .availableMethods(userData.getAvailableMethods())
                 .claims(userData.getClaims())
                 .target(userData.getTarget())
@@ -65,6 +67,7 @@ public class UserDataMapper {
                 dto.getOrganizations(),
                 dto.getCurrentMethod(),
                 dto.getMobileApp(),
+                dto.getRole(),
                 toEntity(dto.getSignatures()),
                 dto.getAvailableMethods(),
                 dto.getClaims(),
@@ -89,5 +92,18 @@ public class UserDataMapper {
         }
 
         return new Signature(dto.getMobile(), dto.getWeb());
+    }
+
+    public ModelRequestDTO toModelRequest(UserDataDTO userDataDTO) {
+        return ModelRequestDTO.builder()
+                .commonMobile(userDataDTO.getSignatures().getCommon().getMobile())
+                .commonWeb(userDataDTO.getSignatures().getCommon().getWeb())
+                .specialMobile(userDataDTO.getSignatures().getSpecial().getMobile())
+                .specialWeb(userDataDTO.getSignatures().getSpecial().getWeb())
+                .segment(userDataDTO.getSegment())
+                .role(userDataDTO.getRole())
+                .target(userDataDTO.getTarget())
+                .claims(userDataDTO.getClaims())
+                .build();
     }
 }

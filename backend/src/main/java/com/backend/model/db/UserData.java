@@ -2,6 +2,7 @@ package com.backend.model.db;
 
 import com.backend.model.enums.PaymentMethod;
 import com.backend.model.enums.SegmentType;
+import com.backend.model.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,6 +30,9 @@ public class UserData {
     private PaymentMethod currentMethod;
 
     private Boolean mobileApp;
+
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "signatures_id")
