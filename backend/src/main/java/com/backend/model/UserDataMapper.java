@@ -103,6 +103,9 @@ public class UserDataMapper {
                 .segment(userDataDTO.getSegment())
                 .role(userDataDTO.getRole())
                 .claims(userDataDTO.getClaims())
+                .currentMethod(userDataDTO.getCurrentMethod())
+                .mobileApp(userDataDTO.getMobileApp())
+                .organizations(userDataDTO.getOrganizations())
                 .build();
     }
 }

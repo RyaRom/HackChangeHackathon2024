@@ -2,10 +2,7 @@ package com.backend.service;
 
 import com.backend.controller.UserController;
 import com.backend.model.UserDataMapper;
-import com.backend.model.dto.SignatureDTO;
-import com.backend.model.dto.SignaturesDTO;
-import com.backend.model.dto.UserDataDTO;
-import com.backend.model.dto.WebRequestDTO;
+import com.backend.model.dto.*;
 import com.backend.model.enums.PaymentMethod;
 import com.backend.model.enums.SegmentType;
 import com.backend.model.enums.UserRole;
@@ -66,7 +63,12 @@ class UserServiceTest {
     @Test
     void classify() {
         when(userRepo.findDistinctByClientIdAndOrganizationId("string", "string")).thenReturn(Optional.of(mapper.toEntity(userDataDTO)));
-        when(modelService.classify(any())).thenReturn(PaymentMethod.PAY_CONTROL);
+        when(modelService.classify(any()))
+                .thenAnswer(invocation -> {
+                    ModelRequestDTO modelRequestDTO = invocation.getArgument(0);
+                    System.out.println(modelRequestDTO);
+                    return PaymentMethod.PAY_CONTROL;
+                });
         UserService userService = new UserService(userRepo, mapper, modelService);
         UserController controller = new UserController(userService);
         PaymentMethod method = controller.getClassification(requestDTO).getBody();
