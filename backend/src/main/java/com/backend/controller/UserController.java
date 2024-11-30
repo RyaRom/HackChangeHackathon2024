@@ -22,12 +22,14 @@ public class UserController {
     @Operation(summary = "Get classification", description = "Get classification from bd or update if null")
     @PostMapping("/classify")
     public ResponseEntity<PaymentMethod> getClassification(@RequestBody WebRequestDTO webRequestDTO) {
-        return ResponseEntity.ok(userService.getPrediction(webRequestDTO));
+        var method = userService.getPrediction(webRequestDTO);
+        return ResponseEntity.ok(method);
     }
 
     @Operation(summary = "Add prediction", description = "Add prediction to bd")
     @PostMapping("/predict")
     public ResponseEntity<PaymentMethod> addPrediction(@RequestBody WebRequestDTO webRequestDTO) {
-        return ResponseEntity.ok(userService.addPrediction(webRequestDTO));
+        var method = userService.addPrediction(webRequestDTO);
+        return ResponseEntity.ok(method);
     }
 }

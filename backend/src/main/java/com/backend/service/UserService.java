@@ -21,13 +21,12 @@ public class UserService {
 
     @Transactional
     public PaymentMethod getPrediction(WebRequestDTO webRequestDTO) {
-        UserData user;
-        try {
-            user = getUser(webRequestDTO);
-        } catch (Exception e) {
+        UserData user = getUser(webRequestDTO);
+        if (user.getTarget() != null) {
+            return user.getTarget();
+        } else {
             return addPrediction(webRequestDTO);
         }
-        return user.getTarget();
     }
 
     @Transactional

@@ -22,8 +22,9 @@ public class AdminController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/user/")
+    @PostMapping("/user")
     public ResponseEntity<UserData> getUser(@RequestBody WebRequestDTO webRequestDTO) {
-        return ResponseEntity.ok(userService.getUser(webRequestDTO));
+        UserData user = userService.getUser(webRequestDTO);
+        return ResponseEntity.ok(user);
     }
 }

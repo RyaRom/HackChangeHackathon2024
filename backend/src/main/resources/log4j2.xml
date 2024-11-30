@@ -18,6 +18,9 @@
         <Logger name="com.backend" level="TRACE" additivity="false">
             <AppenderRef ref="STDOUT_PLAIN"/>
         </Logger>
+        <Logger name="com.backend.exception" level = "WARN">
+            <AppenderRef ref="STDOUT_PLAIN"/>
+        </Logger>
 
         <Root level="TRACE">
             <AppenderRef ref="STDOUT_PLAIN"/>
