@@ -1,12 +1,14 @@
 spring:
   application:
     name: HackChangeHackathon
-  datasource:
-#    url: jdbc:postgresql://postgres-db:5432/predictions_db
-    url:  jdbc:postgresql://localhost:5432/predictions_db
+  r2dbc:
+#    url: r2dbc:postgresql://postgres-db:5432/predictions_db
+    url:  r2dbc:postgresql://localhost:5432/predictions_db
     username: postgres
     password: password
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: update
+model:
+  endpoint: "http://localhost:8080/model"

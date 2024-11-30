@@ -1,10 +1,12 @@
 package com.backend.controller;
 
 import com.backend.model.dto.UserDataDTO;
+import com.backend.model.enums.PaymentMethod;
 import com.backend.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/api")
@@ -12,16 +14,14 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     private final UserService userService;
 
-    @PostMapping("/classify/{id}")
-    public ResponseEntity<Void> getClassification(@PathVariable String clientId) {
-
-        return ResponseEntity.ok().build();
+    @PostMapping("/classify/{clientId}")
+    public Mono<PaymentMethod> getClassification(@PathVariable String clientId) {
+        return userService.getPrediction(clientId);
     }
 
-    @PostMapping("/predict/{id}")
-    public ResponseEntity<Void> addPrediction(@PathVariable String clientId) {
-
-        return ResponseEntity.ok().build();
+    @PostMapping("/predict/{clientId}")
+    public Mono<PaymentMethod> addPrediction(@PathVariable String clientId) {
+        return userService.addPrediction(clientId);
     }
 
     @PostMapping("/user/add")

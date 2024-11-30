@@ -3,6 +3,7 @@ package com.backend.model;
 import com.backend.model.db.Signature;
 import com.backend.model.db.Signatures;
 import com.backend.model.db.UserData;
+import com.backend.model.dto.ModelRequestDTO;
 import com.backend.model.dto.SignatureDTO;
 import com.backend.model.dto.SignaturesDTO;
 import com.backend.model.dto.UserDataDTO;
@@ -89,5 +90,14 @@ public class UserDataMapper {
         }
 
         return new Signature(dto.getMobile(), dto.getWeb());
+    }
+
+    public ModelRequestDTO toModelRequest(UserDataDTO dto) {
+        if (dto == null) {
+            return null;
+        }
+
+        return ModelRequestDTO.builder().build();
+        //TODO: add request
     }
 }
