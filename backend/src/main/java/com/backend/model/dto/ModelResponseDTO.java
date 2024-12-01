@@ -9,5 +9,5 @@ import lombok.Data;
 public class ModelResponseDTO {
     private Boolean isError;
 
-    private PaymentMethod paymentMethod;
+        private PaymentMethod paymentMethod;
 }

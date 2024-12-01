@@ -21,3 +21,10 @@ services:
       - "8080:8080"
     depends_on:
       - postgres-db
+  predictor:
+    build: ml
+    container_name: predictor
+    ports:
+      - "8000:8000"
+    depends_on:
+      - backend

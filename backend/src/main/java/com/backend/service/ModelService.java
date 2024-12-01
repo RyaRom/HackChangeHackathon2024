@@ -1,7 +1,9 @@
 package com.backend.service;
 
 
+import com.backend.exception.ModelException;
 import com.backend.model.dto.ModelRequestDTO;
+import com.backend.model.dto.ModelResponseDTO;
 import com.backend.model.enums.PaymentMethod;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -20,23 +22,24 @@ public class ModelService {
 
     public PaymentMethod classify(ModelRequestDTO modelRequestDTO) {
         log.info("Sending {} to the model", modelRequestDTO.toString());
-//        ModelResponseDTO response = null;
-//        try {
-//            response = webClient.post()
-//                    .uri(url)
-//                    .bodyValue(modelRequestDTO)
-//                    .retrieve()
-//                    .bodyToMono(ModelResponseDTO.class)
-//                    .block();
-//        } catch (Exception e) {
-//            throw new ModelException();
-//        }
-//
-//        if (response == null || Boolean.TRUE.equals(response.getIsError())) {
-//            throw new ModelException();
-//        }
-//
-//        return response.getPaymentMethod();
-        return PaymentMethod.PAY_CONTROL;
+        ModelResponseDTO response;
+        try {
+            response = webClient.post()
+                    .uri(url)
+                    .bodyValue(modelRequestDTO)
+                    .retrieve()
+                    .bodyToMono(ModelResponseDTO.class)
+                    .block();
+        } catch (Exception e) {
+            throw new ModelException();
+        }
+
+        if (response == null || Boolean.TRUE.equals(response.getIsError())) {
+            throw new ModelException();
+        }
+
+        log.info("Get {} as response from model", response.toString());
+
+        return response.getPaymentMethod();
     }
 }
