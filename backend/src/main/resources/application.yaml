@@ -11,4 +11,4 @@ spring:
     hibernate:
       ddl-auto: update
 model:
-  url: "http://predictor:8000/predict"
+  url: "http://127.0.0.1:8000/predict"
