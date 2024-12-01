@@ -159,8 +159,8 @@ def transform_to_dict(dto: ModelRequestDTO) -> dict:
     ]
 
     result = {
-        "clientId": "empty",
-        "organizationId": "empty",
+        "clientId": "client_123",
+        "organizationId": "organization_123",
         "segment": segment,
         "role": role,
         "organizations": dto.organizations,
@@ -180,8 +180,6 @@ def transform_to_dict(dto: ModelRequestDTO) -> dict:
 
 
 data = ModelRequestDTO(
-    clientId ='client_123',
-    organizationId = "organization_123",
     segment="SMALL",
     organizations=25,
     currentMethod="SMS",
@@ -216,3 +214,6 @@ def predict(data: ModelRequestDTO):
             isError=True,
             paymentMethod=None
         )
+
+method = predict(data)
+print(method)
