@@ -107,10 +107,9 @@ def transform_new_data(df, encoders):
     return df.drop(columns='pred')
 
 
-pred_classes = encoders["pred"].classes_
-
 loaded_model = joblib.load('catboost_pipeline_model.joblib')
 encoders = joblib.load("encoders.pkl")
+pred_classes = encoders["pred"].classes_
 
 app = FastAPI()
 METHOD_MAPPING = {
