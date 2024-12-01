@@ -31,11 +31,12 @@ public class ModelService {
                     .bodyToMono(ModelResponseDTO.class)
                     .block();
         } catch (Exception e) {
-            throw new ModelException();
+            e.printStackTrace();
+            throw new ModelException(e.getMessage());
         }
 
         if (response == null || Boolean.TRUE.equals(response.getIsError())) {
-            throw new ModelException();
+            throw new ModelException("no response");
         }
 
         log.info("Get {} as response from model", response.toString());
