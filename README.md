@@ -25,16 +25,14 @@ git clone https://github.com/RyaRom/HackChangeHackathon
 
 ## 4. Запуск docker compose
 ```bash
-cd (Папка проекта HackChangeHackathon)
+cd (Папка HackChangeHackathon/)
 
 docker-compose up --build
 ```
 
 ## 5. Запуск сайта
-1. Отключите CORS в браузере
-2. 
 ```bash
-cd (Папка проекта HackChangeHackathon)/frontend/recommendation-module
+cd (Папка HackChangeHackathon/)/frontend/recommendation-module
 
 npm install
 

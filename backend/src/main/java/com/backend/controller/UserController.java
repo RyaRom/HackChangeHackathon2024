@@ -7,10 +7,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
@@ -19,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     private final UserService userService;
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @Operation(summary = "Get classification", description = "Get classification from bd or update if null")
     @PostMapping("/classify")
     public ResponseEntity<PaymentMethod> getClassification(@RequestBody WebRequestDTO webRequestDTO) {
@@ -26,6 +24,7 @@ public class UserController {
         return ResponseEntity.ok(method);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @Operation(summary = "Add prediction", description = "Add prediction to bd")
     @PostMapping("/predict")
     public ResponseEntity<PaymentMethod> addPrediction(@RequestBody WebRequestDTO webRequestDTO) {
