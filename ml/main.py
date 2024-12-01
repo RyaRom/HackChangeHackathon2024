@@ -199,12 +199,10 @@ def predict(data: ModelRequestDTO):
         transformed_dict = transform_to_dict(data)
         input_data = pd.DataFrame([transformed_dict])
         input_data = transform_new_data(input_data, encoders)
-        input_data
-        
         predictions = loaded_model.predict(input_data)
-        predictions
+        print(predictions)
 
-        predicted_method = METHOD_MAPPING[predictions[0]]
+        predicted_method = METHOD_MAPPING[predictions]
         return ModelResponseDTO(
             isError=False,
             paymentMethod=predicted_method
@@ -215,5 +213,6 @@ def predict(data: ModelRequestDTO):
             paymentMethod=None
         )
 
+print("    ----- LOG STARTS HERE -----")
 method = predict(data)
 print(method)
