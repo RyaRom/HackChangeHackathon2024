@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@alfalab/core-components": "^48.3.0",
+    "@alfalab/core-components-textarea": "^8.8.7",
     "@alfalab/icons-glyph": "^2.210.0",
     "@mui/icons-material": "^6.1.9",
     "@testing-library/jest-dom": "^5.17.0",

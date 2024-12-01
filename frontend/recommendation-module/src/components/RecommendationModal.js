@@ -73,9 +73,6 @@ const RecommendationModal = ({ onClose, onShowComparison }) => {
           >
             Подробнее о {method}
           </button>
-          <button className="action-btn" onClick={onShowComparison}>
-            Сравнение способов подписания
-          </button>
         </div>
       </div>
 

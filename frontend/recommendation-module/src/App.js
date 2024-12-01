@@ -4,13 +4,13 @@ import RecommendationModal from "./components/RecommendationModal";
 import ComparisonModal from "./components/ComparisonModal";
 import PaymentPage from "./components/PaymentPage";
 import MethodDetails from "./components/MethodDetails";
-import DocumentSendingForm from "./components/DocumentSendingForm"; // Подключаем форму для отправки документов
+import DocumentPage from "./components/DocumentPage"; // Импортируем новый компонент
 
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <PaymentPage />,
+      element: <PaymentPage />, // Это главный компонент
       children: [
         {
           path: "recommendation-modal", // Роут для RecommendationModal
@@ -25,21 +25,14 @@ function App() {
           element: <MethodDetails />,
         },
         {
-          path: "document-sending", // Новый роут для формы отправки документов
-          element: <DocumentSendingForm />, // Компонент формы отправки документов
+          path: "document-page", // Роут для DocumentPage
+          element: <DocumentPage />, // Отображение страницы с формой
         },
       ],
     },
   ]);
 
-  return (
-    <RouterProvider router={router}>
-      {/* Основная страница будет загружаться в роуте "/" */}
-      <div>
-        <PaymentPage />
-      </div>
-    </RouterProvider>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

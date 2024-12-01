@@ -3,7 +3,6 @@
     display: flex;
     height: 100vh;
     background-color: #f5f5f5;
-    /* Чуть более серый цвет фона */
 }
 
 /* Стили для левого меню */
@@ -33,7 +32,6 @@
     flex-grow: 1;
     padding: 20px;
     background-color: #f5f5f5;
-    /* Слегка серый фон страницы */
 }
 
 .page-title {
@@ -45,22 +43,19 @@
 /* Стили для кнопки с рекомендациями */
 .recommendation-box {
     background-color: #ffffff;
-    /* Белый фон */
     padding: 20px;
     border-radius: 8px;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    /* Тень */
     transition: background-color 0.3s ease;
     width: fit-content;
 }
 
 .recommendation-box:hover {
     background-color: #f1f1f1;
-    /* Цвет при наведении */
 }
 
-/* Стили модального окна */
+/* Стили для модального окна */
 .recommendation-modal {
     position: fixed;
     top: 0;
@@ -68,7 +63,6 @@
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
-    /* Полупрозрачный фон */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -79,9 +73,7 @@
     padding: 20px 40px;
     border-radius: 8px;
     width: fit-content;
-    /* Окно будет под размер текста */
     max-width: 700px;
-    /* Максимальная ширина окна */
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     position: relative;
 }
@@ -102,7 +94,7 @@
     height: 24px;
 }
 
-/* Кнопки с рекомендациями */
+/* Стили для кнопок */
 .method-buttons button,
 .action-btn {
     background-color: #53687e;
@@ -121,12 +113,7 @@
     transform: scale(1.05);
 }
 
-/* Стиль кнопки при наведении */
-.method-btn:hover {
-    background-color: #567495;
-}
-
-/* Дополнительные стили для результата классификации */
+/* Стили для результата классификации */
 .classification-result {
     margin-top: 20px;
 }
@@ -147,14 +134,9 @@
 /* Анимация и стиль для стрелки */
 .close-icon:hover {
     transform: rotate(90deg);
-    /* Поворот стрелки при наведении */
 }
 
-h3 {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
+/* Стили для таблицы */
 .comparison-table {
     width: 100%;
     margin-top: 20px;
@@ -179,12 +161,7 @@ h3 {
     height: 24px;
 }
 
-.close-btn:hover {
-    background-color: #4e6f93;
-}
-
-
-/* Стили модального окна для сравнения */
+/* Стили для модального окна сравнения */
 .comparison-modal {
     position: fixed;
     top: 0;
@@ -200,30 +177,15 @@ h3 {
 .comparison-modal .modal-content {
     background-color: white;
     padding: 40px 60px;
-    /* Увеличиваем отступы для большего пространства */
     border-radius: 8px;
     width: 80%;
-    /* Увеличиваем ширину */
     max-width: 1000px;
-    /* Устанавливаем максимальную ширину */
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     position: relative;
     height: 80%;
-    /* Увеличиваем высоту */
     overflow-y: auto;
-    /* Добавляем прокрутку, если контент не помещается */
 }
 
-/* Для того чтобы таблица не была слишком тесной, увеличим размеры ячеек */
-.comparison-table th,
-.comparison-table td {
-    padding: 15px;
-    /* Увеличиваем отступы внутри ячеек */
-    font-size: 1.1rem;
-    /* Увеличиваем размер шрифта в таблице */
-}
-
-/* Меньше отступов в кнопке закрытия для второго окна */
 .comparison-modal .close-btn {
     position: absolute;
     top: 20px;
@@ -239,9 +201,176 @@ h3 {
     height: 30px;
 }
 
-/* Прокрутка для модального окна с таблицей */
 .comparison-modal .modal-content .comparison-table {
     max-height: 400px;
-    /* Устанавливаем максимальную высоту таблицы, если она слишком большая */
     overflow-y: auto;
+}
+
+/* Стили для кнопок */
+.button-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.method-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.method-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Стили для модальных окон */
+.new-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    width: 100%;
+    max-width: 400px;
+}
+
+.new-modal .modal-content {
+    text-align: center;
+}
+
+.template-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input:focus {
+    border-color: #007bff;
+}
+
+/* Стили для формы NewModalForm */
+.new-modal-form {
+    width: 100%;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.new-modal-form h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.new-modal-form .template-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.new-modal-form input,
+.new-modal-form select,
+.new-modal-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.new-modal-form textarea {
+    resize: vertical;
+}
+
+.new-modal-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.new-modal-form button:hover {
+    background-color: #218838;
+}
+
+.notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4caf50;
+    /* Зеленый цвет для успеха */
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    animation: fadeInOut 3s forwards;
+    /* Добавляем анимацию */
+}
+.notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4caf50;
+    /* Зеленый цвет для успеха */
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    animation: fadeInOut 3s forwards;
+    /* Добавляем анимацию */
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        top: 0;
+    }
+
+    50% {
+        opacity: 1;
+        top: 20px;
+    }
+
+    100% {
+        opacity: 0;
+        top: 0;
+    }
 }

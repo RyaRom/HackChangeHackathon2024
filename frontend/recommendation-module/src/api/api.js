@@ -1,7 +1,7 @@
 // Функция для отправки POST-запроса на сервер
 export const classifyDocument = async (clientId, organizationId, context) => {
   try {
-    const response = await fetch("http://127.0.0.1/api/classify", {
+    const response = await fetch("http://127.0.0.1:8080/api/classify", {
       method: "POST", // наш запрос
       headers: {
         "Content-Type": "application/json", // тип содержимого

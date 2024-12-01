@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@alfalab/core-components": "^48.3.0",
+    "@alfalab/icons-glyph": "^2.210.0"
+  }
+}
