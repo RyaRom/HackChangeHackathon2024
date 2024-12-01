@@ -12,44 +12,27 @@ from enum import Enum
 app = FastAPI()
 
 
-
-class PaymentMethod(str, Enum):
-    SMS = "SMS"
-    PAY_CONTROL = "PAY_CONTROL"
-    TOKEN = "TOKEN"
-    APP = "APP"
-
-
-class SegmentType(str, Enum):
-    SMALL = "SMALL"
-    MIDDLE = "MIDDLE"
-    LARGE = "LARGE"
-
-
-class UserRole(str, Enum):
-    USER = "USER"
-    STAFF = "STAFF"
-
-
-
 class ModelRequestDTO(BaseModel):
-    segment: SegmentType
+    segment: str
     organizations: int
-    currentMethod: PaymentMethod
+    currentMethod: str
     mobileApp: bool
     commonMobile: int
     commonWeb: int
     specialMobile: int
     specialWeb: int
-    role: UserRole
-    availableMethods: List[PaymentMethod]
+    role: str
+    availableMethods: List[str]
     claims: int
+
+
+
 
 
 
 class ModelResponseDTO(BaseModel):
     isError: bool
-    paymentMethod: Optional[PaymentMethod]
+    paymentMethod: Optional[str]
 
 
 @app.get("/")
@@ -69,7 +52,7 @@ def predict(data: ModelRequestDTO):
 
 
         # predicted_method = data.availableMethods[0] if data.availableMethods else None
-        predicted_method = PaymentMethod.PAY_CONTROL
+        predicted_method = "TOKEN"
         return ModelResponseDTO(
             isError=False,
             paymentMethod=predicted_method
