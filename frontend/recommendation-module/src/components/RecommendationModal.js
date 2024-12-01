@@ -12,13 +12,14 @@ const RecommendationModal = ({ onClose, onShowComparison }) => {
 
   // Функция для вызова классификации
   const handleClassify = async () => {
-    const clientId = "some-id"; // передать актуальный id клиента
-    const organizationId = "org-id"; // передать актуальный id организации
+    const clientId = "client_123"; // передать актуальный id клиента
+    const organizationId = "organization_123"; // передать актуальный id организации
     const context = "some-context"; // контекст для запроса
 
+    console.log("Отправка запроса...");
     const result = await classifyDocument(clientId, organizationId, context);
-    setClassification(result); // результат классификации в состояние
-    console.log(result);
+    console.log("Результат запроса:", result);
+    setClassification(result);
   };
 
   useEffect(() => {
@@ -42,7 +43,7 @@ const RecommendationModal = ({ onClose, onShowComparison }) => {
 
         {classification ? (
           <p>
-            Мы рекомендуем использовать <strong>{classification.method}</strong>{" "}
+            Мы рекомендуем использовать <strong>{classification ||"Неизвестно"}</strong>{" "}
             для подписания документов. Это наиболее подходящий способ для вашего
             профиля.
           </p>
