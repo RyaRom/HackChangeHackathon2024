@@ -10,6 +10,7 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 import numpy as np
 
+
 # Функция для предварительной обработки данных
 def preprocess(df, encoders=None, save_encoders_path=None):
     # Если переданы энкодеры, используем их для трансформации
@@ -43,7 +44,8 @@ def preprocess(df, encoders=None, save_encoders_path=None):
             else:  # Если уникальных значений < 3, применяем OneHotEncoder
                 encoders[col] = OneHotEncoder(sparse_output=False, drop='first')
                 one_hot_encoded = encoders[col].fit_transform(df[[col]])
-                one_hot_df = pd.DataFrame(one_hot_encoded, columns=encoders[col].get_feature_names_out([col]), index=df.index)
+                one_hot_df = pd.DataFrame(one_hot_encoded, columns=encoders[col].get_feature_names_out([col]),
+                                          index=df.index)
                 df = pd.concat([df, one_hot_df], axis=1)
                 df = df.drop(columns=[col])  # Убираем оригинальный столбец
         else:  # Если энкодер уже создан, используем его для трансформации
@@ -51,7 +53,8 @@ def preprocess(df, encoders=None, save_encoders_path=None):
                 df[col] = encoders[col].transform(df[col])
             elif isinstance(encoders[col], OneHotEncoder):
                 one_hot_encoded = encoders[col].transform(df[[col]])
-                one_hot_df = pd.DataFrame(one_hot_encoded, columns=encoders[col].get_feature_names_out([col]), index=df.index)
+                one_hot_df = pd.DataFrame(one_hot_encoded, columns=encoders[col].get_feature_names_out([col]),
+                                          index=df.index)
                 df = pd.concat([df, one_hot_df], axis=1)
                 df = df.drop(columns=[col])
 
@@ -69,9 +72,9 @@ def preprocess(df, encoders=None, save_encoders_path=None):
 
     return df, encoders
 
+
 # Функция для обработки новых данных с использованием сохранённых энкодеров
 def transform_new_data(df, encoders):
-
     # Выделение доступных методов подписи клиента
     list_methods = ['SMS', 'PayControl', 'КЭП в приложении', 'КЭП на токене']
     for val in list_methods:
@@ -85,7 +88,7 @@ def transform_new_data(df, encoders):
             df["segment"] = encoders["segment"].fit_transform(df["segment"])
         else:
             df["segment"] = encoders["segment"].transform(df["segment"])
-    
+
     for col, encoder in encoders.items():
         if col in df.columns:
             if isinstance(encoder, LabelEncoder):
@@ -98,10 +101,13 @@ def transform_new_data(df, encoders):
                 df = pd.concat([df, one_hot_df], axis=1)
                 df = df.drop(columns=[col])
 
-    df = df.drop("organizationId", axis = 1)
-    df = df.drop(columns = 'clientId', axis = 1)
-    
-    return df.drop(columns = 'pred')
+    df = df.drop("organizationId", axis=1)
+    df = df.drop(columns='clientId', axis=1)
+
+    return df.drop(columns='pred')
+
+
+pred_classes = encoders["pred"].classes_
 
 loaded_model = joblib.load('catboost_pipeline_model.joblib')
 encoders = joblib.load("encoders.pkl")
@@ -145,9 +151,11 @@ class ModelRequestDTO(BaseModel):
     availableMethods: List[str]
     claims: int
 
+
 class ModelResponseDTO(BaseModel):
     isError: bool
     paymentMethod: Optional[str]
+
 
 def transform_to_dict(dto: ModelRequestDTO) -> dict:
     # Reverse map segment, role, and methods
@@ -159,8 +167,8 @@ def transform_to_dict(dto: ModelRequestDTO) -> dict:
     ]
 
     result = {
-        "clientId": "client_123",
-        "organizationId": "organization_123",
+        "clientId": "empty",
+        "organizationId": "empty",
         "segment": segment,
         "role": role,
         "organizations": dto.organizations,
@@ -172,14 +180,16 @@ def transform_to_dict(dto: ModelRequestDTO) -> dict:
         "signatures.special.web": dto.specialWeb,
         "availableMethods": ", ".join(available_methods),
         "claims": dto.claims,
-        "context":"special",
-        "pred":""
+        "context": "special",
+        "pred": ""
     }
 
     return result
 
 
 data = ModelRequestDTO(
+    clientId='client_123',
+    organizationId="organization_123",
     segment="SMALL",
     organizations=25,
     currentMethod="SMS",
@@ -193,16 +203,17 @@ data = ModelRequestDTO(
     claims=2
 )
 
+
 @app.post("/predict", response_model=ModelResponseDTO)
 def predict(data: ModelRequestDTO):
     try:
         transformed_dict = transform_to_dict(data)
         input_data = pd.DataFrame([transformed_dict])
         input_data = transform_new_data(input_data, encoders)
-        predictions = loaded_model.predict(input_data)
-        print(predictions)
 
-        predicted_method = METHOD_MAPPING[predictions]
+        predictions = loaded_model.predict(input_data)
+        predicted_method = pred_classes[predictions][0][0]
+
         return ModelResponseDTO(
             isError=False,
             paymentMethod=predicted_method
@@ -213,6 +224,6 @@ def predict(data: ModelRequestDTO):
             paymentMethod=None
         )
 
-print("    ----- LOG STARTS HERE -----")
+
 method = predict(data)
 print(method)
