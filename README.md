@@ -31,6 +31,8 @@ docker-compose up --build
 ```
 
 ## 5. Запуск сайта
+1. Отключите CORS в браузере
+2. 
 ```bash
 cd (Папка проекта HackChangeHackathon)/frontend/recommendation-module
 
