@@ -40,6 +40,6 @@ public class ModelService {
 
         log.info("Get {} as response from model", response.toString());
 
-        return response.getPaymentMethod();
+        return PaymentMethod.valueOf(response.getPaymentMethod());
     }
 }

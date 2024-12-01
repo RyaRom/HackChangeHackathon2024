@@ -56,7 +56,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ModelException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorMessage failedFeignRequest(ModelException exception, WebRequest request) {
-        log.error("Failed conveyor request: {}", exception.getMessage());
+        log.error("Some error in model: {}", exception.getMessage());
         return ErrorMessage.builder()
                 .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
                 .timestamp(LocalDateTime.now())
