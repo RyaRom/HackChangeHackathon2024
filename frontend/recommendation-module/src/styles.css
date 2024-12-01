@@ -1,0 +1,247 @@
+/* Основные стили для страницы */
+.payment-page {
+    display: flex;
+    height: 100vh;
+    background-color: #f5f5f5;
+    /* Чуть более серый цвет фона */
+}
+
+/* Стили для левого меню */
+.sidebar {
+    width: 250px;
+    background-color: #ffffff;
+    box-shadow: 4px 0 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bank-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+.bank-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Основной контент */
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #f5f5f5;
+    /* Слегка серый фон страницы */
+}
+
+.page-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Стили для кнопки с рекомендациями */
+.recommendation-box {
+    background-color: #ffffff;
+    /* Белый фон */
+    padding: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Тень */
+    transition: background-color 0.3s ease;
+    width: fit-content;
+}
+
+.recommendation-box:hover {
+    background-color: #f1f1f1;
+    /* Цвет при наведении */
+}
+
+/* Стили модального окна */
+.recommendation-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    /* Полупрозрачный фон */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px 40px;
+    border-radius: 8px;
+    width: fit-content;
+    /* Окно будет под размер текста */
+    max-width: 700px;
+    /* Максимальная ширина окна */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+/* Кнопка для закрытия модального окна */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+}
+
+.close-icon {
+    width: 24px;
+    height: 24px;
+}
+
+/* Кнопки с рекомендациями */
+.method-buttons button,
+.action-btn {
+    background-color: #53687e;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.method-buttons button:hover,
+.action-btn:hover {
+    background-color: #4e6f93;
+    transform: scale(1.05);
+}
+
+/* Стиль кнопки при наведении */
+.method-btn:hover {
+    background-color: #567495;
+}
+
+/* Дополнительные стили для результата классификации */
+.classification-result {
+    margin-top: 20px;
+}
+
+.classification-result button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.classification-result button:hover {
+    background-color: #218838;
+}
+
+/* Анимация и стиль для стрелки */
+.close-icon:hover {
+    transform: rotate(90deg);
+    /* Поворот стрелки при наведении */
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.comparison-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.comparison-table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+}
+
+.icon-check,
+.icon-cross {
+    width: 24px;
+    height: 24px;
+}
+
+.close-btn:hover {
+    background-color: #4e6f93;
+}
+
+
+/* Стили модального окна для сравнения */
+.comparison-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.comparison-modal .modal-content {
+    background-color: white;
+    padding: 40px 60px;
+    /* Увеличиваем отступы для большего пространства */
+    border-radius: 8px;
+    width: 80%;
+    /* Увеличиваем ширину */
+    max-width: 1000px;
+    /* Устанавливаем максимальную ширину */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    height: 80%;
+    /* Увеличиваем высоту */
+    overflow-y: auto;
+    /* Добавляем прокрутку, если контент не помещается */
+}
+
+/* Для того чтобы таблица не была слишком тесной, увеличим размеры ячеек */
+.comparison-table th,
+.comparison-table td {
+    padding: 15px;
+    /* Увеличиваем отступы внутри ячеек */
+    font-size: 1.1rem;
+    /* Увеличиваем размер шрифта в таблице */
+}
+
+/* Меньше отступов в кнопке закрытия для второго окна */
+.comparison-modal .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    padding: 15px;
+    background-color: transparent;
+    border: none;
+}
+
+.comparison-modal .close-icon {
+    width: 30px;
+    height: 30px;
+}
+
+/* Прокрутка для модального окна с таблицей */
+.comparison-modal .modal-content .comparison-table {
+    max-height: 400px;
+    /* Устанавливаем максимальную высоту таблицы, если она слишком большая */
+    overflow-y: auto;
+}

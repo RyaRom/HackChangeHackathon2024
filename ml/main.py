@@ -25,19 +25,9 @@ class ModelRequestDTO(BaseModel):
     availableMethods: List[str]
     claims: int
 
-
-
-
-
-
 class ModelResponseDTO(BaseModel):
     isError: bool
     paymentMethod: Optional[str]
-
-
-@app.get("/")
-def read_root():
-    return {"message": "XGBoost Classification Service is Running"}
 
 
 @app.post("/predict", response_model=ModelResponseDTO)
@@ -58,6 +48,7 @@ def predict(data: ModelRequestDTO):
             paymentMethod=predicted_method
         )
     except Exception as e:
+        print(e)
         return ModelResponseDTO(
             isError=True,
             paymentMethod=None
