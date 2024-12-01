@@ -36,8 +36,6 @@ REVERSE_METHOD_MAPPING = {
 
 
 class ModelRequestDTO(BaseModel):
-    clientid:str
-    organizationId:str
     segment: str
     organizations: int
     role: str
@@ -112,3 +110,20 @@ def predict(data: ModelRequestDTO):
             isError=True,
             paymentMethod=None
         )
+
+dto = ModelRequestDTO(
+    segment="SMALL",
+    organizations=25,
+    currentMethod="SMS",
+    mobileApp=True,
+    commonMobile=5,
+    commonWeb=10,
+    specialMobile=3,
+    specialWeb=2,
+    role="USER",
+    availableMethods=["SMS", "PAY_CONTROL"],
+    claims=2
+)
+
+transformed_dict = transform_to_dict(dto)
+print(transformed_dict)
