@@ -5,7 +5,7 @@ COPY . /app
 COPY catboost_pipeline_model.joblib encoders.pkl /app/
 
 
-RUN pip install --no-cache-dir fastapi uvicorn pandas joblib pydantic catboost sklearn numpy
+RUN pip install --no-cache-dir fastapi uvicorn pandas joblib pydantic catboost scikit-learn numpy
 
 EXPOSE 8000
 
