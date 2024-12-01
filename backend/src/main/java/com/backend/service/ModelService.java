@@ -41,6 +41,13 @@ public class ModelService {
 
         log.info("Get {} as response from model", response.toString());
 
-        return PaymentMethod.valueOf(response.getPaymentMethod());
+        String res = response.getPaymentMethod();
+        return switch (res){
+            case "PayControl" -> PaymentMethod.PAY_CONTROL;
+            case "SMS" -> PaymentMethod.PAY_CONTROL;
+            case "КЭП в приложении" -> PaymentMethod.APP;
+            case "КЭП на токене" -> PaymentMethod.TOKEN;
+            default -> throw new ModelException("no response");
+        };
     }
 }
