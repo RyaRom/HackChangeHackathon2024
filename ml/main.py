@@ -218,6 +218,7 @@ def predict(data: ModelRequestDTO):
             paymentMethod=predicted_method
         )
     except Exception as e:
+        print(f"Error during prediction: {e}")
         return ModelResponseDTO(
             isError=True,
             paymentMethod=None
