@@ -106,6 +106,7 @@ public class UserDataMapper {
                 .currentMethod(userDataDTO.getCurrentMethod())
                 .mobileApp(userDataDTO.getMobileApp())
                 .organizations(userDataDTO.getOrganizations())
+                .availableMethods(userDataDTO.getAvailableMethods())
                 .build();
     }
 }
