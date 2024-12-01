@@ -158,11 +158,11 @@ class ModelResponseDTO(BaseModel):
 
 def transform_to_dict(dto: ModelRequestDTO) -> dict:
     # Reverse map segment, role, and methods
-    segment = REVERSE_SEGMENT_MAPPING.get(dto.segment, "Неизвестно")
-    role = REVERSE_ROLE_MAPPING.get(dto.role, "Неизвестно")
-    current_method = REVERSE_METHOD_MAPPING.get(dto.currentMethod, "Неизвестно")
+    segment = REVERSE_SEGMENT_MAPPING.get(dto.segment, "Средний бизнес")
+    role = REVERSE_ROLE_MAPPING.get(dto.role, "Сотрудник")
+    current_method = REVERSE_METHOD_MAPPING.get(dto.currentMethod, "PayControl")
     available_methods = [
-        REVERSE_METHOD_MAPPING.get(method, "Неизвестно") for method in dto.availableMethods
+        REVERSE_METHOD_MAPPING.get(method, "PayControl") for method in dto.availableMethods
     ]
 
     result = {
